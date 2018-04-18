@@ -1,7 +1,7 @@
 body{
     overflow-x: hidden;
     background: white;
-    transition: 1s all;
+    transition: 10s all;
     
     #wrapper1440{
         margin: 0 auto;
@@ -95,5 +95,8 @@ body{
     }
     .mobileNav{
         display: table;
+    }
+    #backButton{
+        display: none;
     }
 }

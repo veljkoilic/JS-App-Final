@@ -1,0 +1,13 @@
+.backButton{
+    #backButton{
+        width: 70px;
+        cursor: pointer;
+        fill: #202020;
+        transition: 1s all;
+        &:hover{
+            fill: black;
+            width: 80px;
+            
+        }
+    }
+}
