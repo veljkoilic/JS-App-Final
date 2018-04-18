@@ -1,0 +1,99 @@
+body{
+    overflow-x: hidden;
+    background: white;
+    transition: 1s all;
+    
+    #wrapper1440{
+        margin: 0 auto;
+        max-width: 1140px;
+        padding: 0;
+        
+        #navigationWrap{
+            margin-top: 50px;
+            padding: 0;
+            
+            nav{
+                
+                .desktopNav{
+                    text-align: center;
+                    max-width: 1140px;
+                    
+                    li{
+                        list-style-type: none;
+                        display: inline-block;
+                        
+                        a{
+                            color: black;
+                            padding: 10px;
+                            font-family: garamond;
+                            transition: 1s all;
+                            &:hover{
+                                text-decoration: none;
+                                &:after{
+                                    content: "";
+                                    width: 100px;
+                                    height: 2px;
+                                    background: black;
+                                    display: block;
+                                    position: absolute;
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                    animation: underlineAnimation 0.5s ease-in-out;
+                                    transition: 1s all;
+                                }
+                            }
+                            
+                            img{
+                                width: 100px;
+                            }
+                        }
+
+                        
+                    }
+
+                }
+
+                
+
+            }
+                
+         }
+            
+    }
+        
+        
+}
+
+.mobileNav{
+    display: none;
+    margin: 0 auto;
+    img{
+        width: 130px;
+        margin: 0 auto;
+    }
+}
+// ANIMATIONS
+
+
+
+@keyframes underlineAnimation {
+    from{
+        width: 0px;
+    }
+    to{
+        width: 100px;
+    }
+    
+}
+
+
+// END ANIMATIONS
+
+@media only screen and (max-width:992px){
+    .desktopNav{
+        display: none;
+    }
+    .mobileNav{
+        display: table;
+    }
+}

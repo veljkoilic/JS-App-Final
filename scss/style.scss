@@ -1,0 +1,22 @@
+@import "global";
+
+/* Template segments */
+@import "template/header";
+@import "template/footer";
+@import "template/main";
+
+/* Homepage imports */
+@import "template/navigation";
+@import "template/accordion";
+@import "template/options";
+@import "template/lightbox";
+@import "template/expanded";
+@import "template/hamburger";
+
+/* END Homepage imports */
+
+/*Contact page*/
+@import "template/contact";
+/*End contact page*/
+
+@import "reset";
