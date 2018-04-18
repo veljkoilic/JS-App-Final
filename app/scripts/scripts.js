@@ -56,11 +56,20 @@ $(document).ready(function () {
             request.send();
         }
     };
+    // Back to home button
+    $(".backButton").click(function () {
+        $(".options").hide(800);
+        $(".expanded").hide(800);
+        $(".contact").hide(800);
+        $(".accordion").fadeIn(1500);
+        $(".backButton").hide(800);
+    });
 
     // Link to options
     $(".accordion").children().click(function () {
         $(".accordion").hide(800);
         $(".options").fadeIn(1500);
+        $(".backButton").fadeIn(1500);
     });
 
     // Change page depending on clicked image
@@ -103,6 +112,7 @@ $(document).ready(function () {
     $("h6").click(function () {
         $(".options").hide(800);
         $(".expanded").fadeIn(1500);
+        $(".backButton").fadeIn(1500);
     });
 
     // Link to the contact page
@@ -111,6 +121,7 @@ $(document).ready(function () {
         $(".expanded").hide(500);
         $(".accordion").hide(500);
         $(".contact").fadeIn(1500);
+        $(".backButton").fadeIn(1500);
     });
 
     // Link to homepage
@@ -119,6 +130,7 @@ $(document).ready(function () {
         $(".expanded").hide(800);
         $(".contact").hide(800);
         $(".accordion").fadeIn(1500);
+        $(".backButton").hide(800);
     });
 
     // HAMBURGER

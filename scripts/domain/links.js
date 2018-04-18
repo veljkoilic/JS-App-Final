@@ -39,11 +39,23 @@ $( document ).ready(function() {
         }
         
     };
-    
+    // Back to home button
+    $(".backButton").click(function(){
+        $(".options").hide(800);
+        $(".expanded").hide(800);
+        $(".contact").hide(800);
+        $(".accordion").fadeIn(1500);
+        $(".backButton").hide(800);
+        
+        
+        
+    });
+
     // Link to options
     $(".accordion").children().click(function(){
         $(".accordion").hide(800);
         $(".options").fadeIn(1500);
+        $(".backButton").fadeIn(1500);
 
 
     });
@@ -98,6 +110,7 @@ $( document ).ready(function() {
     $("h6").click(function(){
         $(".options").hide(800);
         $(".expanded").fadeIn(1500);
+        $(".backButton").fadeIn(1500);
         
     });
     
@@ -107,6 +120,7 @@ $( document ).ready(function() {
         $(".expanded").hide(500);
         $(".accordion").hide(500);
         $(".contact").fadeIn(1500);
+        $(".backButton").fadeIn(1500);
           
     });
     
@@ -116,7 +130,8 @@ $( document ).ready(function() {
         $(".expanded").hide(800);
         $(".contact").hide(800);
         $(".accordion").fadeIn(1500);
-        
+        $(".backButton").hide(800);
+       
         
         
     });
