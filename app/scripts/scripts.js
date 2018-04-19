@@ -46,17 +46,14 @@ $(document).ready(function () {
 
                     // changes card images
                     $(".changableImg").eq(i).attr("src", jsonObject.cards[i].imageSource);
-
-                    // changes expanded view of the card
                 }
-                return request.response;
             };
 
             request.send();
         }
-        console.log(request.onload);
-        for (var i = 0; i < jsonObject.images.length; i++) {
 
+        // changes expanded view of the card
+        for (var i = 0; i < jsonObject.images.length; i++) {
             $("h6").eq(0).click(function () {
                 $(".fakeSmall").eq(i).attr("src", jsonObject.images[i].bigImageSource1);
                 $(".galleryImage").eq(i).attr("href", jsonObject.images[i].bigImageSource1);
@@ -73,7 +70,9 @@ $(document).ready(function () {
             });
         }
     };
+    // PAGE CHANGES
     // Back to home button
+
     $(".backButton").click(function () {
         $(".options").hide(800);
         $(".expanded").hide(800);
@@ -83,15 +82,16 @@ $(document).ready(function () {
     });
 
     // Link to options
+    // Accordion links
     $(".accordion").children().click(function () {
         $(".accordion").hide(800);
         $(".options").fadeIn(1500);
-
         $(".backButton").fadeIn(1500);
     });
 
     // Change page depending on clicked image
     // FIRST
+
     $(".accordion").children().eq(0).click(function () {
         console.log("you clicked the first");
         var pageContentURL = "https://api.myjson.com/bins/10juab";
@@ -99,6 +99,7 @@ $(document).ready(function () {
     });
 
     // SECOND
+
     $(".accordion").children().eq(1).click(function () {
         console.log("you clicked the second");
         var pageContentURL = "https://api.myjson.com/bins/10juab";
@@ -106,6 +107,7 @@ $(document).ready(function () {
     });
 
     // THIRD
+
     $(".accordion").children().eq(2).click(function () {
         console.log("you clicked the third");
         var pageContentURL = "https://api.myjson.com/bins/10juab";
@@ -113,6 +115,7 @@ $(document).ready(function () {
     });
 
     // FOURTH
+
     $(".accordion").children().eq(3).click(function () {
         console.log("you clicked the fourth");
         var pageContentURL = "https://api.myjson.com/bins/10juab";
@@ -120,6 +123,7 @@ $(document).ready(function () {
     });
 
     // FIFTH
+
     $(".accordion").children().eq(4).click(function () {
         console.log("you clicked the fifth");
         var pageContentURL = "https://api.myjson.com/bins/10juab";
@@ -127,6 +131,7 @@ $(document).ready(function () {
     });
 
     // ACCORDION LINKS MOBILE
+
     $(".accordionWrapperMobile").children().click(function () {
         $(".accordionWrapperMobile").hide(800);
         $(".options").fadeIn(1500);
@@ -189,23 +194,9 @@ $(document).ready(function () {
         $(".options").hide(800);
         $(".expanded").hide(800);
         $(".contact").hide(800);
-        $(".accordion").fadeIn(1500);
+        $(".accordion").hide(1500);
         $(".accordionWrapperMobile").fadeIn(1500);
         $(".backButton").hide(800);
-
-        // navigation appearing fix
-        function accordionShowHide() {
-
-            if (window.innerWidth < 992) {
-                $(".accordion").hide();
-                $(".accordionWrapperMobile").show();
-                console.log("its less than 920");
-            } else {
-                $(".accordion").show();
-                $(".accordionWrapperMobile").hide();
-                console.log("its more than 920");
-            }
-        };
     });
 
     // HAMBURGER
@@ -228,6 +219,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         var verified = true;
+
         // REGEX FOR NAME
         var name = document.getElementById('name').value;
         var nameREGEX = /^[ ',-\.A-Za-z\xC0-\xCF\xD1-\xD6\xD8-\xDD\xDF-\xE5\xE7-\xF6\xF8-\xFD\xFF\u0104-\u0107\u010C\u010D\u0116-\u0119\u012E\u012F\u0141-\u0144\u0152\u0160\u0161\u016A\u016B\u0172\u0173\u0178-\u017E\u2202]+$/;
@@ -260,6 +252,7 @@ $(document).ready(function () {
             verified = false;
             document.getElementById('phone').style.borderColor = "red";
         }
+        // Submit form if verified
         console.log(verified);
 
         if (verified) {
