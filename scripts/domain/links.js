@@ -26,8 +26,57 @@ $( document ).ready(function() {
                     
                     // changes card images
                     $(".changableImg").eq(i).attr("src",jsonObject.cards[i].imageSource);
-                    
+
+
+
+                    // This function is in charge of loading different content from apis depending on
+                    // selected card.
+                    contentChange();
+                    function contentChange() {
+                            $("h6").eq(0).click(function () {
+                                for (let i = 0; i < jsonObject.images.length; i++) {
+                                    $(".fakeSmall").eq(i).attr("src", jsonObject.images[i].bigImageSource1);
+                                    $(".galleryImage").eq(i).attr("href", jsonObject.images[i].bigImageSource1);
+
+                                }
+                                    // changes expanded card header
+                                    $("#bigHeading").text(jsonObject.cards[0].header);
+
+                                    // changes the long paragraph
+                                    $("#longParagraph").text(jsonObject.cards[0].longParagraph);
+
+                            });
+                            $("h6").eq(1).click(function () {
+                                for (let i = 0; i < jsonObject.images.length; i++) {
+                                    $(".fakeSmall").eq(i).attr("src", jsonObject.images[i].bigImageSource2);
+                                    $(".galleryImage").eq(i).attr("href", jsonObject.images[i].bigImageSource2);
+
+                                }
+                                    // changes expanded card header
+                                    $("#bigHeading").text(jsonObject.cards[1].header);
+
+                                    // changes the long paragraph
+                                    $("#longParagraph").text(jsonObject.cards[1].longParagraph);
+
+                            });
+                            $("h6").eq(2).click(function () {
+                                for (let i = 0; i < jsonObject.images.length; i++) {
+                                    $(".fakeSmall").eq(i).attr("src", jsonObject.images[i].bigImageSource3);
+                                    $(".galleryImage").eq(i).attr("href", jsonObject.images[i].bigImageSource3);
+
+                                }
+                                    // changes expanded card header
+                                    $("#bigHeading").text(jsonObject.cards[2].header);
+
+                                    // changes the long paragraph
+                                    $("#longParagraph").text(jsonObject.cards[2].longParagraph);
+
+                            });
+                        
+                    }
+
                 }
+                return jsonObject;
             }
 
             request.send();
@@ -35,26 +84,7 @@ $( document ).ready(function() {
         }
 
         // changes expanded view of the card
-        for (var i = 0; i < jsonObject.images.length; i++) {
-            $("h6").eq(0).click(function(){
-                $(".fakeSmall").eq(i).attr("src",jsonObject.images[i].bigImageSource1);
-                $(".galleryImage").eq(i).attr("href",jsonObject.images[i].bigImageSource1);
-                
-            });
 
-            $("h6").eq(1).click(function(){
-                $(".fakeSmall").eq(i).attr("src",jsonObject.images[i].bigImageSource2);
-                $(".galleryImage").eq(i).attr("href",jsonObject.images[i].bigImageSource2);
-                
-            });
-
-            $("h6").eq(2).click(function(){
-                $(".fakeSmall").eq(i).attr("src",jsonObject.images[i].bigImageSource3);
-                $(".galleryImage").eq(i).attr("href",jsonObject.images[i].bigImageSource3);
-                
-            });
-            
-        }
     };
     // PAGE CHANGES
     // Back to home button
@@ -82,7 +112,7 @@ $( document ).ready(function() {
 
     $(".accordion").children().eq(0).click(function(){
         console.log("you clicked the first");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
+        var pageContentURL = "http://api.myjson.com/bins/10juab";
         changeURL(pageContentURL);
         
     });
@@ -91,7 +121,7 @@ $( document ).ready(function() {
 
     $(".accordion").children().eq(1).click(function(){
         console.log("you clicked the second");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
+        var pageContentURL = "http://api.myjson.com/bins/10juab";
         changeURL(pageContentURL);
         
     });
@@ -100,7 +130,7 @@ $( document ).ready(function() {
 
     $(".accordion").children().eq(2).click(function(){
         console.log("you clicked the third");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
+        var pageContentURL = "http://api.myjson.com/bins/10juab";
         changeURL(pageContentURL);
          
     });
@@ -109,7 +139,7 @@ $( document ).ready(function() {
 
     $(".accordion").children().eq(3).click(function(){
         console.log("you clicked the fourth");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
+        var pageContentURL = "http://api.myjson.com/bins/10juab";
         changeURL(pageContentURL);
         
     });
@@ -118,7 +148,7 @@ $( document ).ready(function() {
 
     $(".accordion").children().eq(4).click(function(){
         console.log("you clicked the fifth");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
+        var pageContentURL = "http://api.myjson.com/bins/10juab";
         changeURL(pageContentURL);
         
     });
