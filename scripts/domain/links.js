@@ -28,16 +28,36 @@ $( document ).ready(function() {
                     $(".changableImg").eq(i).attr("src",jsonObject.cards[i].imageSource);
                     
                     // changes expanded view of the card
-                    $(".fakeSmall").eq(i).attr("src",jsonObject.images[i].bigImageSource1);
-                    $(".galleryImage").eq(i).attr("href",jsonObject.images[i].bigImageSource1);
+
                 }
-                
+            return request.response;    
             }
 
             request.send();
             
         }
-        
+        console.log(request.onload);
+        for (var i = 0; i < jsonObject.images.length; i++) {
+
+            $("h6").eq(0).click(function(){
+                $(".fakeSmall").eq(i).attr("src",jsonObject.images[i].bigImageSource1);
+                $(".galleryImage").eq(i).attr("href",jsonObject.images[i].bigImageSource1);
+                
+            });
+
+            $("h6").eq(1).click(function(){
+                $(".fakeSmall").eq(i).attr("src",jsonObject.images[i].bigImageSource2);
+                $(".galleryImage").eq(i).attr("href",jsonObject.images[i].bigImageSource2);
+                
+            });
+
+            $("h6").eq(2).click(function(){
+                $(".fakeSmall").eq(i).attr("src",jsonObject.images[i].bigImageSource3);
+                $(".galleryImage").eq(i).attr("href",jsonObject.images[i].bigImageSource3);
+                
+            });
+            
+        }
     };
     // Back to home button
     $(".backButton").click(function(){
@@ -46,6 +66,8 @@ $( document ).ready(function() {
         $(".contact").hide(800);
         $(".accordion").fadeIn(1500);
         $(".backButton").hide(800);
+
+
         
         
         
@@ -55,6 +77,7 @@ $( document ).ready(function() {
     $(".accordion").children().click(function(){
         $(".accordion").hide(800);
         $(".options").fadeIn(1500);
+        
         $(".backButton").fadeIn(1500);
 
 
@@ -105,12 +128,67 @@ $( document ).ready(function() {
         
         
     });
+
+    // ACCORDION LINKS MOBILE
+    $(".accordionWrapperMobile").children().click(function(){
+        $(".accordionWrapperMobile").hide(800);
+        $(".options").fadeIn(1500);
+        $(".backButton").fadeIn(1500);
+        
+
+
+    });
+
+    $(".accordionWrapperMobile").children().eq(0).click(function(){
+        console.log("you clicked the first");
+        var pageContentURL = "https://api.myjson.com/bins/10juab";
+        changeURL(pageContentURL);
+        
+
+    });
+    
+    // SECOND
+    $(".accordionWrapperMobile").children().eq(1).click(function(){
+        console.log("you clicked the second");
+        var pageContentURL = "https://api.myjson.com/bins/10juab";
+        changeURL(pageContentURL);
+        
+        
+    });
+    
+    // THIRD
+    $(".accordionWrapperMobile").children().eq(2).click(function(){
+        console.log("you clicked the third");
+        var pageContentURL = "https://api.myjson.com/bins/10juab";
+        changeURL(pageContentURL);
+        
+        
+    });
+    
+    // FOURTH
+    $(".accordionWrapperMobile").children().eq(3).click(function(){
+        console.log("you clicked the fourth");
+        var pageContentURL = "https://api.myjson.com/bins/10juab";
+        changeURL(pageContentURL);
+        
+        
+    });
+    
+    // FIFTH
+    $(".accordionWrapperMobile").children().eq(4).click(function(){
+        console.log("you clicked the fifth");
+        var pageContentURL = "https://api.myjson.com/bins/10juab";
+        changeURL(pageContentURL);
+        
+        
+    });
     
     // Link to extended view
     $("h6").click(function(){
         $(".options").hide(800);
         $(".expanded").fadeIn(1500);
         $(".backButton").fadeIn(1500);
+        
         
     });
     
@@ -121,20 +199,44 @@ $( document ).ready(function() {
         $(".accordion").hide(500);
         $(".contact").fadeIn(1500);
         $(".backButton").fadeIn(1500);
+        $(".accordionWrapperMobile").hide(800);
+        
           
     });
     
     // Link to homepage
-    $(".logo").click(function(){
+    $("#logo").click(function(){
         $(".options").hide(800);
         $(".expanded").hide(800);
         $(".contact").hide(800);
         $(".accordion").fadeIn(1500);
+        $(".accordionWrapperMobile").fadeIn(1500);
         $(".backButton").hide(800);
+
+            // navigation appearing fix
+        function accordionShowHide(){
+
+            if(window.innerWidth < 992){
+                $(".accordion").hide();
+                $(".accordionWrapperMobile").show();
+                console.log("its less than 920")
+        
+            }else{
+                $(".accordion").show();
+                $(".accordionWrapperMobile").hide();
+                console.log("its more than 920")
+        
+            }
+
+        };
+        
        
         
         
     });
+
+
+
     
     // HAMBURGER
     $('#nav-icon').click(function(){

@@ -62,3 +62,20 @@
 	}
 }
 
+.accordionWrapperMobile{
+	margin-top: 100px;
+	display: none;
+	img{
+		margin-top: 20px;
+		box-shadow: 0px 0px 45px -2px rgba(0,0,0,0.75);
+		padding: 0;
+		border: 5px solid white;
+		cursor: pointer;
+	}
+	h1{
+		font-family: garamond;
+		text-align: center;
+		position: relative;
+		top: 10px;
+	}
+}
