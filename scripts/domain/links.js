@@ -39,10 +39,10 @@ $( document ).ready(function() {
                                     $(".galleryImage").eq(i).attr("href", jsonObject.images[i].bigImageSource1);
 
                                 }
-                                    // changes expanded card header
+                                    // changes expanded card header of the 1st card click
                                     $("#bigHeading").text(jsonObject.cards[0].header);
 
-                                    // changes the long paragraph
+                                    // changes the long paragraph of the 1st card click
                                     $("#longParagraph").text(jsonObject.cards[0].longParagraph);
 
                             });
@@ -52,10 +52,10 @@ $( document ).ready(function() {
                                     $(".galleryImage").eq(i).attr("href", jsonObject.images[i].bigImageSource2);
 
                                 }
-                                    // changes expanded card header
+                                    // changes expanded card header of the 2nd card click
                                     $("#bigHeading").text(jsonObject.cards[1].header);
 
-                                    // changes the long paragraph
+                                    // changes the long paragraph of the 2nd card click
                                     $("#longParagraph").text(jsonObject.cards[1].longParagraph);
 
                             });
@@ -65,10 +65,10 @@ $( document ).ready(function() {
                                     $(".galleryImage").eq(i).attr("href", jsonObject.images[i].bigImageSource3);
 
                                 }
-                                    // changes expanded card header
+                                    // changes expanded card header of the 3rd card click
                                     $("#bigHeading").text(jsonObject.cards[2].header);
 
-                                    // changes the long paragraph
+                                    // changes the long paragraph of the 3rd card click
                                     $("#longParagraph").text(jsonObject.cards[2].longParagraph);
 
                             });
@@ -97,6 +97,7 @@ $( document ).ready(function() {
             $(".accordion").css("display, none");
             $(".accordionWrapperMobile").css("display, none");
             console.log("this works");
+
         }
 
         else if(window.innerWidth < 992){

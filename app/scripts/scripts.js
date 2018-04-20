@@ -44,10 +44,10 @@ $(document).ready(function () {
                                 $(".fakeSmall").eq(_i).attr("src", jsonObject.images[_i].bigImageSource1);
                                 $(".galleryImage").eq(_i).attr("href", jsonObject.images[_i].bigImageSource1);
                             }
-                            // changes expanded card header
+                            // changes expanded card header of the 1st card click
                             $("#bigHeading").text(jsonObject.cards[0].header);
 
-                            // changes the long paragraph
+                            // changes the long paragraph of the 1st card click
                             $("#longParagraph").text(jsonObject.cards[0].longParagraph);
                         });
                         $("h6").eq(1).click(function () {
@@ -55,10 +55,10 @@ $(document).ready(function () {
                                 $(".fakeSmall").eq(_i2).attr("src", jsonObject.images[_i2].bigImageSource2);
                                 $(".galleryImage").eq(_i2).attr("href", jsonObject.images[_i2].bigImageSource2);
                             }
-                            // changes expanded card header
+                            // changes expanded card header of the 2nd card click
                             $("#bigHeading").text(jsonObject.cards[1].header);
 
-                            // changes the long paragraph
+                            // changes the long paragraph of the 2nd card click
                             $("#longParagraph").text(jsonObject.cards[1].longParagraph);
                         });
                         $("h6").eq(2).click(function () {
@@ -66,10 +66,10 @@ $(document).ready(function () {
                                 $(".fakeSmall").eq(_i3).attr("src", jsonObject.images[_i3].bigImageSource3);
                                 $(".galleryImage").eq(_i3).attr("href", jsonObject.images[_i3].bigImageSource3);
                             }
-                            // changes expanded card header
+                            // changes expanded card header of the 3rd card click
                             $("#bigHeading").text(jsonObject.cards[2].header);
 
-                            // changes the long paragraph
+                            // changes the long paragraph of the 3rd card click
                             $("#longParagraph").text(jsonObject.cards[2].longParagraph);
                         });
                     };
