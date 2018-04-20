@@ -86,6 +86,32 @@ $( document ).ready(function() {
         // changes expanded view of the card
 
     };
+    // Checking if both accordions are hidden so that they
+    // stay hidden on resize of other pages, but it should still switch accordions on the first page
+    // WHAT I TRIED:
+    // if($("#accordionWrapper").is(":hidden")  && $(".accordionWrapperMobile").is(":hidden"))
+    // if(document.querySelector("#accordionWrapper").style.display === "none" && document.querySelector(".accordionWrapperMobile").style.display === "none")
+    window.addEventListener("resize",function checkResize() {
+        console.log(document.querySelector("#accordionWrapper").style.display === "none" && document.querySelector(".accordionWrapperMobile").style.display === "none")
+        if($("#accordionWrapper").is(":visible")  && $(".accordionWrapperMobile").is(":visible")){
+            $(".accordion").css("display, none");
+            $(".accordionWrapperMobile").css("display, none");
+            console.log("this works");
+        }
+
+        else if(window.innerWidth < 992){
+            $(".accordionWrapperMobile").fadeIn(1500);
+            $(".accordion").hide();
+            console.log("second works");
+
+        }else if (window.innerWidth > 992){
+            $(".accordionWrapperMobile").hide(0);
+            $(".accordion").fadeIn(1500);
+            console.log("third works.")
+
+        }
+    });
+    
     // PAGE CHANGES
     // Back to home button
 
@@ -93,8 +119,16 @@ $( document ).ready(function() {
         $(".options").hide(800);
         $(".expanded").hide(800);
         $(".contact").hide(800);
-        $(".accordion").fadeIn(1500);
         $(".backButton").hide(800);
+        if(window.innerWidth < 992){
+            $(".accordionWrapperMobile").fadeIn(1500);
+            $(".accordion").hide();
+
+        }else{
+            $(".accordionWrapperMobile").hide(0);
+            $(".accordion").fadeIn(1500);
+
+        }
    
     });
 
@@ -106,6 +140,8 @@ $( document ).ready(function() {
         $(".backButton").fadeIn(1500);
 
     });
+
+    
 
     // Change page depending on clicked image
     // FIRST
@@ -162,6 +198,7 @@ $( document ).ready(function() {
         
     });
 
+    // FIRST MOBILE
     $(".accordionWrapperMobile").children().eq(0).click(function(){
         console.log("you clicked the first");
         var pageContentURL = "https://api.myjson.com/bins/10juab";
@@ -169,7 +206,7 @@ $( document ).ready(function() {
 
     });
     
-    // SECOND
+    // SECOND MOBILE
     $(".accordionWrapperMobile").children().eq(1).click(function(){
         console.log("you clicked the second");
         var pageContentURL = "https://api.myjson.com/bins/10juab";
@@ -177,7 +214,7 @@ $( document ).ready(function() {
         
     });
     
-    // THIRD
+    // THIRD MOBILE
     $(".accordionWrapperMobile").children().eq(2).click(function(){
         console.log("you clicked the third");
         var pageContentURL = "https://api.myjson.com/bins/10juab";
@@ -185,7 +222,7 @@ $( document ).ready(function() {
         
     });
     
-    // FOURTH
+    // FOURTH MOBILE
     $(".accordionWrapperMobile").children().eq(3).click(function(){
         console.log("you clicked the fourth");
         var pageContentURL = "https://api.myjson.com/bins/10juab";
@@ -193,7 +230,7 @@ $( document ).ready(function() {
         
     });
     
-    // FIFTH
+    // FIFTH MOBILE
     $(".accordionWrapperMobile").children().eq(4).click(function(){
         console.log("you clicked the fifth");
         var pageContentURL = "https://api.myjson.com/bins/10juab";
@@ -221,13 +258,20 @@ $( document ).ready(function() {
     });
     
     // Link to homepage
-    $("#logo").click(function(){
+    $(".logo").click(function(){
         $(".options").hide(800);
         $(".expanded").hide(800);
         $(".contact").hide(800);
-        $(".accordion").hide(1500);
-        $(".accordionWrapperMobile").fadeIn(1500);
         $(".backButton").hide(800);
+        if(window.innerWidth < 992){
+            $(".accordionWrapperMobile").fadeIn(1500);
+            $(".accordion").hide();
+
+        }else{
+            $(".accordionWrapperMobile").hide(0);
+            $(".accordion").fadeIn(1500);
+
+        }
  
     });
     
