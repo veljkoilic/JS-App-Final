@@ -35,7 +35,7 @@ $( document ).ready(function() {
                     function contentChange() {
                             $("h6").eq(0).click(function () {
                                 for (let i = 0; i < jsonObject.images.length; i++) {
-                                    $(".fakeSmall").eq(i).attr("src", jsonObject.images[i].bigImageSource1);
+                                    $(".displayedImages").eq(i).attr("src", jsonObject.images[i].bigImageSource1);
                                     $(".galleryImage").eq(i).attr("href", jsonObject.images[i].bigImageSource1);
 
                                 }
@@ -48,7 +48,7 @@ $( document ).ready(function() {
                             });
                             $("h6").eq(1).click(function () {
                                 for (let i = 0; i < jsonObject.images.length; i++) {
-                                    $(".fakeSmall").eq(i).attr("src", jsonObject.images[i].bigImageSource2);
+                                    $(".displayedImages").eq(i).attr("src", jsonObject.images[i].bigImageSource2);
                                     $(".galleryImage").eq(i).attr("href", jsonObject.images[i].bigImageSource2);
 
                                 }
@@ -61,7 +61,7 @@ $( document ).ready(function() {
                             });
                             $("h6").eq(2).click(function () {
                                 for (let i = 0; i < jsonObject.images.length; i++) {
-                                    $(".fakeSmall").eq(i).attr("src", jsonObject.images[i].bigImageSource3);
+                                    $(".displayedImages").eq(i).attr("src", jsonObject.images[i].bigImageSource3);
                                     $(".galleryImage").eq(i).attr("href", jsonObject.images[i].bigImageSource3);
 
                                 }
@@ -91,27 +91,39 @@ $( document ).ready(function() {
     // WHAT I TRIED:
     // if($("#accordionWrapper").is(":hidden")  && $(".accordionWrapperMobile").is(":hidden"))
     // if(document.querySelector("#accordionWrapper").style.display === "none" && document.querySelector(".accordionWrapperMobile").style.display === "none")
+
+    var areHidden = false;
     window.addEventListener("resize",function checkResize() {
-        console.log(document.querySelector("#accordionWrapper").style.display === "none" && document.querySelector(".accordionWrapperMobile").style.display === "none")
-        if($("#accordionWrapper").is(":visible")  && $(".accordionWrapperMobile").is(":visible")){
-            $(".accordion").css("display, none");
-            $(".accordionWrapperMobile").css("display, none");
-            console.log("this works");
+        if(areHidden === true){
+            
+            $(".accordion").hide();
+            $(".accordionWrapperMobile").hide();
 
         }
 
         else if(window.innerWidth < 992){
             $(".accordionWrapperMobile").fadeIn(1500);
             $(".accordion").hide();
-            console.log("second works");
 
         }else if (window.innerWidth > 992){
             $(".accordionWrapperMobile").hide(0);
             $(".accordion").fadeIn(1500);
-            console.log("third works.")
 
         }
     });
+
+    // Onload resize accordion
+    if(window.innerWidth < 992){
+        $(".accordionWrapperMobile").fadeIn(1500);
+        $(".accordion").hide();
+        console.log("Loaded mobile");
+
+    }else{
+        $(".accordionWrapperMobile").hide(0);
+        $(".accordion").fadeIn(1500);
+        console.log("Loaded Desktop")
+
+    }
     
     // PAGE CHANGES
     // Back to home button
@@ -121,6 +133,7 @@ $( document ).ready(function() {
         $(".expanded").hide(800);
         $(".contact").hide(800);
         $(".backButton").hide(800);
+        areHidden = false;
         if(window.innerWidth < 992){
             $(".accordionWrapperMobile").fadeIn(1500);
             $(".accordion").hide();
@@ -133,61 +146,45 @@ $( document ).ready(function() {
    
     });
 
+    // Change page depending on clicked image- on click changes the api and sends
+    // it to a function that changes the content
+    // API's
+    var pageContentURL = [
+        "http://api.myjson.com/bins/10juab",
+        "http://api.myjson.com/bins/10juab",
+        "http://api.myjson.com/bins/10juab",
+        "http://api.myjson.com/bins/10juab",
+        "http://api.myjson.com/bins/10juab",
+    ]
+    // DESKTOP API CHANGE
+    for (let i = 0; i < $(".accordion").children().length; i++) {
+
+        $(".accordion").children().eq(i).click(function(){
+            pageContentURL[i];
+            changeURL(pageContentURL[i]);
+            
+        });
+        
+    }
+    // MOBILE API CHANGE
+    for (let i = 0; i < $(".accordion").children().length; i++) {
+
+        $(".accordionWrapperMobile").children().eq(i).click(function(){
+            pageContentURL[i];
+            changeURL(pageContentURL[i]);
+            
+        });
+        
+    }
+
     // Link to options
     // Accordion links
     $(".accordion").children().click(function(){
         $(".accordion").hide(800);
         $(".options").fadeIn(1500);
         $(".backButton").fadeIn(1500);
+        areHidden = true;
 
-    });
-
-    
-
-    // Change page depending on clicked image
-    // FIRST
-
-    $(".accordion").children().eq(0).click(function(){
-        console.log("you clicked the first");
-        var pageContentURL = "http://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-        
-    });
-    
-    // SECOND
-
-    $(".accordion").children().eq(1).click(function(){
-        console.log("you clicked the second");
-        var pageContentURL = "http://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-        
-    });
-    
-    // THIRD
-
-    $(".accordion").children().eq(2).click(function(){
-        console.log("you clicked the third");
-        var pageContentURL = "http://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-         
-    });
-    
-    // FOURTH
-
-    $(".accordion").children().eq(3).click(function(){
-        console.log("you clicked the fourth");
-        var pageContentURL = "http://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-        
-    });
-    
-    // FIFTH
-
-    $(".accordion").children().eq(4).click(function(){
-        console.log("you clicked the fifth");
-        var pageContentURL = "http://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-        
     });
     
     // ACCORDION LINKS MOBILE
@@ -196,54 +193,18 @@ $( document ).ready(function() {
         $(".accordionWrapperMobile").hide(800);
         $(".options").fadeIn(1500);
         $(".backButton").fadeIn(1500);
+        areHidden = true;
         
     });
 
-    // FIRST MOBILE
-    $(".accordionWrapperMobile").children().eq(0).click(function(){
-        console.log("you clicked the first");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-
-    });
-    
-    // SECOND MOBILE
-    $(".accordionWrapperMobile").children().eq(1).click(function(){
-        console.log("you clicked the second");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-        
-    });
-    
-    // THIRD MOBILE
-    $(".accordionWrapperMobile").children().eq(2).click(function(){
-        console.log("you clicked the third");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-        
-    });
-    
-    // FOURTH MOBILE
-    $(".accordionWrapperMobile").children().eq(3).click(function(){
-        console.log("you clicked the fourth");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-        
-    });
-    
-    // FIFTH MOBILE
-    $(".accordionWrapperMobile").children().eq(4).click(function(){
-        console.log("you clicked the fifth");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-        
-    });
     
     // Link to extended view
     $("h6").click(function(){
         $(".options").hide(800);
         $(".expanded").fadeIn(1500);
         $(".backButton").fadeIn(1500);
+        areHidden = true;
+
         
     });
     
@@ -255,6 +216,8 @@ $( document ).ready(function() {
         $(".contact").fadeIn(1500);
         $(".backButton").fadeIn(1500);
         $(".accordionWrapperMobile").hide(800);
+        areHidden = true;
+
         
     });
     
@@ -264,6 +227,8 @@ $( document ).ready(function() {
         $(".expanded").hide(800);
         $(".contact").hide(800);
         $(".backButton").hide(800);
+        areHidden = false;
+
         if(window.innerWidth < 992){
             $(".accordionWrapperMobile").fadeIn(1500);
             $(".accordion").hide();
@@ -345,8 +310,6 @@ $( document ).ready(function() {
         }
         
     }
-    
-    
-    
+
     
 });

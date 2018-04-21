@@ -1,19 +1,3 @@
-'use strict';
-
-agCookie.create('example-cookie', "im a cookie", 1);
-
-var readValue = agCookie.read('example-cookie');
-
-console.log(readValue);
-'use strict';
-
-console.log('I have entered this file.');
-console.log('This is crystal clear evidence that this works.');
-
-var calculation = 200 + 223;
-
-console.log('Sanity Check: 200 + 223 = ' + calculation);
-console.log('bye.');
 "use strict";
 "use strict";
 "use strict";
@@ -41,7 +25,7 @@ $(document).ready(function () {
                     var contentChange = function contentChange() {
                         $("h6").eq(0).click(function () {
                             for (var _i = 0; _i < jsonObject.images.length; _i++) {
-                                $(".fakeSmall").eq(_i).attr("src", jsonObject.images[_i].bigImageSource1);
+                                $(".displayedImages").eq(_i).attr("src", jsonObject.images[_i].bigImageSource1);
                                 $(".galleryImage").eq(_i).attr("href", jsonObject.images[_i].bigImageSource1);
                             }
                             // changes expanded card header of the 1st card click
@@ -52,7 +36,7 @@ $(document).ready(function () {
                         });
                         $("h6").eq(1).click(function () {
                             for (var _i2 = 0; _i2 < jsonObject.images.length; _i2++) {
-                                $(".fakeSmall").eq(_i2).attr("src", jsonObject.images[_i2].bigImageSource2);
+                                $(".displayedImages").eq(_i2).attr("src", jsonObject.images[_i2].bigImageSource2);
                                 $(".galleryImage").eq(_i2).attr("href", jsonObject.images[_i2].bigImageSource2);
                             }
                             // changes expanded card header of the 2nd card click
@@ -63,7 +47,7 @@ $(document).ready(function () {
                         });
                         $("h6").eq(2).click(function () {
                             for (var _i3 = 0; _i3 < jsonObject.images.length; _i3++) {
-                                $(".fakeSmall").eq(_i3).attr("src", jsonObject.images[_i3].bigImageSource3);
+                                $(".displayedImages").eq(_i3).attr("src", jsonObject.images[_i3].bigImageSource3);
                                 $(".galleryImage").eq(_i3).attr("href", jsonObject.images[_i3].bigImageSource3);
                             }
                             // changes expanded card header of the 3rd card click
@@ -100,22 +84,32 @@ $(document).ready(function () {
     // WHAT I TRIED:
     // if($("#accordionWrapper").is(":hidden")  && $(".accordionWrapperMobile").is(":hidden"))
     // if(document.querySelector("#accordionWrapper").style.display === "none" && document.querySelector(".accordionWrapperMobile").style.display === "none")
+
+    var areHidden = false;
     window.addEventListener("resize", function checkResize() {
-        console.log(document.querySelector("#accordionWrapper").style.display === "none" && document.querySelector(".accordionWrapperMobile").style.display === "none");
-        if ($("#accordionWrapper").is(":visible") && $(".accordionWrapperMobile").is(":visible")) {
-            $(".accordion").css("display, none");
-            $(".accordionWrapperMobile").css("display, none");
-            console.log("this works");
+        if (areHidden === true) {
+
+            $(".accordion").hide();
+            $(".accordionWrapperMobile").hide();
         } else if (window.innerWidth < 992) {
             $(".accordionWrapperMobile").fadeIn(1500);
             $(".accordion").hide();
-            console.log("second works");
         } else if (window.innerWidth > 992) {
             $(".accordionWrapperMobile").hide(0);
             $(".accordion").fadeIn(1500);
-            console.log("third works.");
         }
     });
+
+    // Onload resize accordion
+    if (window.innerWidth < 992) {
+        $(".accordionWrapperMobile").fadeIn(1500);
+        $(".accordion").hide();
+        console.log("Loaded mobile");
+    } else {
+        $(".accordionWrapperMobile").hide(0);
+        $(".accordion").fadeIn(1500);
+        console.log("Loaded Desktop");
+    }
 
     // PAGE CHANGES
     // Back to home button
@@ -125,6 +119,7 @@ $(document).ready(function () {
         $(".expanded").hide(800);
         $(".contact").hide(800);
         $(".backButton").hide(800);
+        areHidden = false;
         if (window.innerWidth < 992) {
             $(".accordionWrapperMobile").fadeIn(1500);
             $(".accordion").hide();
@@ -134,53 +129,44 @@ $(document).ready(function () {
         }
     });
 
+    // Change page depending on clicked image- on click changes the api and sends
+    // it to a function that changes the content
+    // API's
+    var pageContentURL = ["http://api.myjson.com/bins/10juab", "http://api.myjson.com/bins/10juab", "http://api.myjson.com/bins/10juab", "http://api.myjson.com/bins/10juab", "http://api.myjson.com/bins/10juab"];
+    // DESKTOP API CHANGE
+
+    var _loop = function _loop(i) {
+
+        $(".accordion").children().eq(i).click(function () {
+            pageContentURL[i];
+            changeURL(pageContentURL[i]);
+        });
+    };
+
+    for (var i = 0; i < $(".accordion").children().length; i++) {
+        _loop(i);
+    }
+    // MOBILE API CHANGE
+
+    var _loop2 = function _loop2(i) {
+
+        $(".accordionWrapperMobile").children().eq(i).click(function () {
+            pageContentURL[i];
+            changeURL(pageContentURL[i]);
+        });
+    };
+
+    for (var i = 0; i < $(".accordion").children().length; i++) {
+        _loop2(i);
+    }
+
     // Link to options
     // Accordion links
     $(".accordion").children().click(function () {
         $(".accordion").hide(800);
         $(".options").fadeIn(1500);
         $(".backButton").fadeIn(1500);
-    });
-
-    // Change page depending on clicked image
-    // FIRST
-
-    $(".accordion").children().eq(0).click(function () {
-        console.log("you clicked the first");
-        var pageContentURL = "http://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-    });
-
-    // SECOND
-
-    $(".accordion").children().eq(1).click(function () {
-        console.log("you clicked the second");
-        var pageContentURL = "http://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-    });
-
-    // THIRD
-
-    $(".accordion").children().eq(2).click(function () {
-        console.log("you clicked the third");
-        var pageContentURL = "http://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-    });
-
-    // FOURTH
-
-    $(".accordion").children().eq(3).click(function () {
-        console.log("you clicked the fourth");
-        var pageContentURL = "http://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-    });
-
-    // FIFTH
-
-    $(".accordion").children().eq(4).click(function () {
-        console.log("you clicked the fifth");
-        var pageContentURL = "http://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
+        areHidden = true;
     });
 
     // ACCORDION LINKS MOBILE
@@ -189,41 +175,7 @@ $(document).ready(function () {
         $(".accordionWrapperMobile").hide(800);
         $(".options").fadeIn(1500);
         $(".backButton").fadeIn(1500);
-    });
-
-    // FIRST MOBILE
-    $(".accordionWrapperMobile").children().eq(0).click(function () {
-        console.log("you clicked the first");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-    });
-
-    // SECOND MOBILE
-    $(".accordionWrapperMobile").children().eq(1).click(function () {
-        console.log("you clicked the second");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-    });
-
-    // THIRD MOBILE
-    $(".accordionWrapperMobile").children().eq(2).click(function () {
-        console.log("you clicked the third");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-    });
-
-    // FOURTH MOBILE
-    $(".accordionWrapperMobile").children().eq(3).click(function () {
-        console.log("you clicked the fourth");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
-    });
-
-    // FIFTH MOBILE
-    $(".accordionWrapperMobile").children().eq(4).click(function () {
-        console.log("you clicked the fifth");
-        var pageContentURL = "https://api.myjson.com/bins/10juab";
-        changeURL(pageContentURL);
+        areHidden = true;
     });
 
     // Link to extended view
@@ -231,6 +183,7 @@ $(document).ready(function () {
         $(".options").hide(800);
         $(".expanded").fadeIn(1500);
         $(".backButton").fadeIn(1500);
+        areHidden = true;
     });
 
     // Link to the contact page
@@ -241,6 +194,7 @@ $(document).ready(function () {
         $(".contact").fadeIn(1500);
         $(".backButton").fadeIn(1500);
         $(".accordionWrapperMobile").hide(800);
+        areHidden = true;
     });
 
     // Link to homepage
@@ -249,6 +203,8 @@ $(document).ready(function () {
         $(".expanded").hide(800);
         $(".contact").hide(800);
         $(".backButton").hide(800);
+        areHidden = false;
+
         if (window.innerWidth < 992) {
             $(".accordionWrapperMobile").fadeIn(1500);
             $(".accordion").hide();
